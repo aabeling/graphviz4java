@@ -2,6 +2,7 @@ package de.banapple.graphviz4java.layout;
 
 import java.util.Arrays;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import de.banapple.graphviz4java.model.Edge;
@@ -33,6 +34,7 @@ public class DotLayouterTest
 		graph.getEdges().addAll(Arrays.asList(edge1, edge2, edge3, edge4, edge5));
 		
 		DotLayouter layouter = new DotLayouter();
-		layouter.doLayout(graph);
+		LayoutInfo layoutInfo = layouter.doLayout(graph);
+		Assert.assertNotNull(layoutInfo);
 	}
 }
