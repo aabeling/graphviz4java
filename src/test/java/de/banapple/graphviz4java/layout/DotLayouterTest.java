@@ -16,10 +16,15 @@ public class DotLayouterTest
 	{
 		/* prepare some nodes */
 		Node node1 = new Node("a");
+		node1.setDimensions(2.0, 1.0);
 		Node node2 = new Node("b");
+		node2.setDimensions(1.0, 1.0);
 		Node node3 = new Node("c");
+		node3.setDimensions(3.0, 1.0);
 		Node node4 = new Node("d");
+		node4.setDimensions(1.0, 1.0);
 		Node node5 = new Node("e");
+		node5.setDimensions(1.0, 1.0);
 		
 		/* some edges */
 		Edge edge1 = new Edge(node1, node2);

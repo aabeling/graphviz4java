@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -197,8 +200,18 @@ public class DotLayouter
 		for (Node node : graph.getNodes()) {
 			String nodeId = getNextNodeId();
 			nodeMap.put(nodeId, node);
-			nodeIdMap.put(node, nodeId);
-			result.append("  ").append(nodeId).append(";\n");
+			nodeIdMap.put(node, nodeId);			
+			result.append("  ").append(nodeId);
+			List<String> options = new LinkedList<String>();
+			options.add("shape=rectangle");
+			if (node.getWidth()>0.0 && node.getHeight()>0.0) {
+				options.add("fixedsize=\"true\"");
+				options.add("width=\""+node.getWidth()+"\"");
+				options.add("height=\""+node.getHeight()+"\"");
+			}			
+			result.append("[").append(StringUtils.join(options,","))
+				.append("]");
+			result.append(";\n");
 		}
 		for (Edge edge : graph.getEdges()) {
 			String sourceId = nodeIdMap.get(edge.getSource());
@@ -217,8 +230,4 @@ public class DotLayouter
 		return "node"+nextNodeId;
 	}
 
-	private String getNodeId(Node node)
-	{
-		return "\"" + node.getName() + "\"";
-	}
 }
