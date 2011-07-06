@@ -1,0 +1,13 @@
+This project provides an object-oriented bridge to the
+graphviz dot layout algorithm.
+
+Graphs are defined using the classes Graph, Node and Edge.
+Layouting is done using the DotLayout class which simply
+transforms a given graph object into a temporary dot file
+which is then processed by the system command "dot". The output
+of the command is then parsed to produce layout information for
+the graph.
+
+It does not support the full graphviz dot language.
+
+And it is still alpha.
